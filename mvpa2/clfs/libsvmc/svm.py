@@ -15,6 +15,7 @@ import numpy as np
 import operator
 
 from mvpa2.base import warning
+from mvpa2.base.param import Parameter
 from mvpa2.base.state import ConditionalAttribute
 from mvpa2.base.learner import FailedToTrainError
 
@@ -119,6 +120,7 @@ class SVM(_SVM):
             # taken from libSVM docs
             self.params['epsilon']._set_default(0.001)
 
+        self.params['nr_weight'] = Parameter(len(self.params['weight'].value))
         self.__model = None
         """Holds the trained SVM."""
 
